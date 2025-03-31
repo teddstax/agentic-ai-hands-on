@@ -148,8 +148,6 @@ You just created a new empty collection to store knowledge base articles.
 
 #### Steps: Add Astra DB as a RAG tool in Langflow
 
-![astra-rag-agent](./assets/astra-rag-agent.png)
-
 Extend your existing Basic Agentic AI flow with the following:
 1. Collapse `Vector Stores` and drag `Astra DB` to the canvas
 2. Click the component and select `Tool mode`
@@ -160,6 +158,8 @@ Extend your existing Basic Agentic AI flow with the following:
     - ![astra-rag-agent](./assets/rag-edit-tools.png)
     - Click `Save`
 4. Connect the `Astra DB` component to the `Agent` component
+
+![astra-rag-agent](./assets/astra-rag-agent.png)
 
 Let's run it by clicking `▶️ Playground` and asking the question:
 
@@ -239,8 +239,6 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
     - **Tool Params:** `productId`
 3. Connect the `Astra DB Tool` component to the `Agent` component
 
-![customer-support-agent](./assets/customer-support-agent.png)
-
 #### Steps 💬: Instruct the Agent
 Let's provide our Agent a bit more information about what it's capable of doing and what guardrails to take into account. This enables more accuracy for our Customer Support Agent.
 
@@ -261,6 +259,8 @@ Example: For an inquiry about canceling an order, retrieve the order and product
 
 Always aim to deliver clear, concise, and user-focused solutions to ensure the best possible experience.
 ```
+
+![customer-support-agent](./assets/customer-support-agent.png)
 
 🥳 You did it! You now have an Agentic Flow with access to:
 - A company FAQ knowledgebase
