@@ -124,9 +124,68 @@ To see the magic behind, simply click the down arrow `🔽`. The Agent decided t
 ![tool-usage](./assets/tool-usage.png)
 
 ### 4. 📚 Retrieval-Augmented Generation (RAG) with Astra DB
-**Goal:** Adding external knowledge by making use of Vector Search
+**Goal:** Adding external knowledge by making use of Vector Search and RAG
 
-#### Preparation:
-Load a data set in your `agentic-ai` database in [Astra DB](https://astra.datastax.com) by creating an additional flow. Either by creating a new flow or adding components to your existing flow.
-1. Collapse `Data` and drag the `URL` component to the canvas
+#### Preparation: Creating an FAQ collection
+In this step we'll create a new collection in your `agentic-ai` database in [Astra DB](https://astra.datastax.com) to store data as a knowledge base.
 
+First we need to create a collection to store the data:
+1. Browse to your `agentic-ai` database on [Astra DB](https://astra.datastax.com)
+2. Click `Data Explorer` and click `Create Collection +`
+3. Type your collection name, i.e. `company_faq` and enebale `Vector-enabled collection`
+4. Leave NVIDIA, NV-Embed-QA, 1024 and Cosine as it is
+5. Click `Create Collection`
+
+![astra-new-collection](./assets/astra-new-collection.png)
+
+You just created a new empty collection to store knowledge base articles.
+
+#### Steps: Add Astra DB as a RAG tool in Langflow
+Extend your existing Basic Agentic AI flow with the following:
+1. Collapse `Vector Stores` and drag `Astra DB` to the canvas
+2. Click the component and select `Tool mode`
+3. Make sure the `Astra DB Application Token` is configured, then select your `agentic-ai` database and `company_faq` collection
+4. Connect it to the `Agent` component
+
+![astra-rag-agent](./assets/astra-rag-agent.png)
+
+Let's run it by clicking `▶️ Playground` and asking the question:
+
+    What are your shipping times?
+
+As a response we get a generic answer. Why? Because our collection is still empty. Let's fix that!
+
+#### Steps: Add some articles to our knowledge base
+Extend your flow with the following additional flow (scroll down a bit for a blank piece of canvas):
+1. Collapse `Data` and drag `File` to the canvas
+2. Click on `Upload a file` and upload the `Company_FAQ.pdf` from this repository (you'll have to download it first)
+3. Collapse `Langchain` and drag `Recursive Character Splitter` to the canvas
+4. Set the `Chunk size` to 500 and `Chunk overlap` to 100
+5. Collapse `Vector Stores` and drag `Astra DB` to the canvas
+6. Make sure the `Astra DB Application Token` is configured, then select your `agentic-ai` database and `company_faq` collection
+7. Click the play button `▶️` on the `Astra DB` component, see the flow run and observe the time consumed. You can also click the intermediate magnifying glasses `🔍` to debug the flow.
+
+![astra-ingest](./assets/astra-ingest.png)
+
+🙌 Congrats! You just loaded a PDF, converted it to plain text, chunked it and loaded it into a Vector enabled collection in Astra DB!
+
+#### 👀 Check: Have a look at the data in Astra DB
+In this step we'll have a look at the dataset in your `agentic-ai` database in [Astra DB](https://astra.datastax.com).
+
+1. Browse to your `agentic-ai` database on [Astra DB](https://astra.datastax.com)
+2. Click `Data Explorer` and click `company_faq`
+3. Observe the data loaded into the collection on the right side of the screen
+4. Toggle from `Table` to `JSON` view and collapse some of the rows to see what's inside
+
+To see Vector Search in action, type the following in the text box `Vector Search`:
+
+    What are the shipping times
+
+You'll see the chunk with shipping times show up as the first result. You just ran an ANN search transparantly utilizing the Vectorize functionality in Astra DB that does the vectorization for you on demand.
+
+#### 🚀 Now let's run the Agent in Langflow
+Click on `▶️ Playground` and click on `+` on the left side to start a new Chat. Then run the following question:
+
+    How many hours do I need to wait for a domestic order?
+
+You'll see the Agent making use of the Astra DB knowledge base to find relevant content and then running the calculator to calculate the amount of hours to wait 🎉
