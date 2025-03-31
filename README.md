@@ -1,4 +1,71 @@
-# 🧠 Agentic AI Workshop Script – Langflow + OpenAI + Astra DB
+# 🧠 Agentic AI Workshop – Langflow + Astra DB
+
+## 🎯 Goal of the workshop
+Learn how to build a simple AI agent with Langflow, enhance it with Retrieval-Augmented Generation (RAG) using Astra DB, and then expand it with tools for powerful agentic AI functionality.
+
+## 🛠️ Prerequisites
+This workshop assumes you have access to:
+1. [A Github account](https://github.com)
+
+During the course, you'll gain access to the following by signing up for free:
+1. [DataStax Astra DB](https://astra.datastax.com) (you can sign up through your **public** Github account)
+2. [OpenAI account](https://platform.openai.com/signup) (you can sign up through your Github account)
+    - *Alternatively we'll provide some OpenAI API keys to use for this workshop*
+
+Follow the below steps and note down the **Astra DB API Endpoint**, **Astra DB ApplicationToken** and **OpenAI API Key** as we'll need them later on.
+
+### Sign up for Astra DB
+Make sure you have a vector-capable Astra database (get one for free at [astra.datastax.com](https://astra.datastax.com))
+- Sign up or log in
+- Click `Databases` and click `Create Database` 
+- Select `Serverless (Vector)`, type a database name, i.e. `agentic-ai` and select a Cloud Provider and Region of choice
+- Wait a few minutes for it to provision
+- Note down the **API Endpoint** which can be found in the right pane underneath *Database details*.
+- Click on `Generate Token` and give it a name, i.e. `agentic-ai-token` and click `Generate`. Now click on the copy button and paste the **Application Token** somewhere for later use
+
+![astradb](./assets/astra-new-db.png)
+
+### Sign up for OpenAI
+- Create an [OpenAI account](https://platform.openai.com/signup) or [sign in](https://platform.openai.com/login).
+- Navigate to the [API key page](https://platform.openai.com/account/api-keys) and create a new **Secret Key**, optionally naming the key.
+    - *Alternatively we'll provide some OpenAI API keys to use for this workshop*
+
+![openai](./assets/openai-key.png)
+
+## ⚡️ Open this tutorial on Github Codespaces
+To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
+
+1. Open the [agentic-ai-workshop](https://github.com/michelderu/agentic-ai-workshop) repository
+2. Click on `Use this template`->`Ceate new repository` as follows:
+
+    ![codespace](./assets/create-new-repository.png)
+
+3. Now select your github account and name the new repository. Ideally also set the description. Click `Create repository`
+
+    ![codespace](./assets/repository-name.png)
+
+4. Cool! You just created a copy in your own Gihub account! Now let's get started with coding. Click `Create codespace on main` as follows:
+
+    ![codespace](./assets/create-codespace.png)
+
+Now you're ready to rock and roll! 🥳
+
+5. Configure the secrets as follows:
+
+- Copy `.env.example` to `.env`
+- Edit `.env` and provide the required variables `OPENAI_API_KEY`, `ASTRA_DB_API_ENDPOINT` and `ASTRA_DB_APPLICATION_TOKEN`
+
+6. Now we can run Langflow as follows in the terminal window:
+
+```bash
+pip install uv
+uv sync
+uv run langflow run --env-file .env
+```
+
+This starts Langflow and opens a port to your Codespace in the cloud. In case you loose track of the URL to Langflow, just click on `PORTS` in the terminal window.
+
+🎉 Congrats! You finished the set-up part of the workshop. Now for the fun part!
 
 ## 🎯 Doel van de workshop
 Leer hoe je een eenvoudige AI-agent bouwt met Langflow, deze verrijkt met Retrieval-Augmented Generation (RAG) via Astra DB, en vervolgens uitbreidt met tools voor krachtige agentic AI-functionaliteit.
