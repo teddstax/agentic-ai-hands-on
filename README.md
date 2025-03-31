@@ -170,7 +170,7 @@ As a response we get a generic answer. Why? Because our collection is still empt
 #### Steps: Add some articles to our knowledge base
 Extend your flow with the following additional flow (scroll down a bit for a blank piece of canvas):
 1. Collapse `Data` and drag `File` to the canvas
-2. Click on `Upload a file` and upload the `Company_FAQ.pdf` from this repository (you'll have to download it first)
+2. Click on `Upload a file` and upload the `./data/Company_FAQ.pdf` from this repository (you'll have to download it first)
 3. Collapse `Langchain` and drag `Recursive Character Splitter` to the canvas
 4. Set the `Chunk size` to 500 and `Chunk overlap` to 100
 5. Collapse `Vector Stores` and drag `Astra DB` to the canvas
@@ -209,13 +209,13 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
 1. Browse to your `agentic-ai` database on [Astra DB](https://astra.datastax.com)
 2. Click `Data Explorer` and click `Create Collection +`
 3. Name the collection `orders`, disable the `Vector-enabled collection` switch and click `Create Collection`
-4. Click `Load Data` and upload the file: [sample_orders.csv](./sample_orders.csv)
+4. Click `Load Data` and upload the file: [./data/sample_orders.csv](./sample_orders.csv)
 5. Verify the data was loaded into Astra DB
 
 #### Preparation: Add Products data
 1. Click `Create Collection +`
 2. Name the collection `products`, disable the `Vector-enabled collection` switch and click `Create Collection`
-3. Click `Load Data` and upload the file: [sample_products.csv](./sample_products.csv)
+3. Click `Load Data` and upload the file: [./data/sample_products.csv](./sample_products.csv)
 4. Verify the data was loaded into Astra DB
 
 #### Steps 🛠️🔍: Add Order Lookup to the agent 
