@@ -1,13 +1,13 @@
 {
-  "id": "c276a790-7b3b-437d-b582-c0131fe322ae",
+  "id": "8531be77-a983-44e2-b703-5d515660e772",
   "data": {
     "nodes": [
       {
-        "id": "ChatInput-SNZiC",
+        "id": "ChatInput-Q9VLr",
         "type": "genericNode",
         "position": {
-          "x": 15,
-          "y": 658.3639712695438
+          "x": 212.1002889073901,
+          "y": 803.2452269216271
         },
         "data": {
           "node": {
@@ -301,7 +301,7 @@
           },
           "showNode": true,
           "type": "ChatInput",
-          "id": "ChatInput-SNZiC"
+          "id": "ChatInput-Q9VLr"
         },
         "selected": false,
         "measured": {
@@ -310,11 +310,11 @@
         }
       },
       {
-        "id": "ChatOutput-uIh5Y",
+        "id": "ChatOutput-evLYe",
         "type": "genericNode",
         "position": {
-          "x": 1340.669201754764,
-          "y": 691.6786684244403
+          "x": 1537.769490662154,
+          "y": 836.5599240765237
         },
         "data": {
           "node": {
@@ -607,7 +607,7 @@
           },
           "showNode": true,
           "type": "ChatOutput",
-          "id": "ChatOutput-uIh5Y"
+          "id": "ChatOutput-evLYe"
         },
         "selected": false,
         "measured": {
@@ -616,11 +616,11 @@
         }
       },
       {
-        "id": "Agent-a93d1",
+        "id": "Agent-pat5r",
         "type": "genericNode",
         "position": {
-          "x": 910.4807674629283,
-          "y": 331.76773188486095
+          "x": 1107.5810563703185,
+          "y": 476.6489875369444
         },
         "data": {
           "node": {
@@ -1103,7 +1103,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "system_prompt",
-                "value": "You are a helpful assistant that can use tools to answer questions and perform tasks.",
+                "value": "You are a skilled customer service manager and information router. Your primary responsibility is to use the available tools to accurately address user inquiries and provide detailed, helpful responses. You can:\n\n- Look up order numbers to retrieve and share order details. Keep in mind that the date is the order date and that price is in USD.\n- Access product information to provide relevant descriptions or specifications based on the retrieved product ids.\n- Use the Astra DB knowledge base about Frequently Asked Questions on shipping, returns, placing orders, and more. Always use this tool to find relevant content!\n- Use the Calculator tool to perform basic arithmetic. Only use the calculator tool!\n- Find information on the internet using a specific URL as a last resort only.\n\nThink step by step and if a question requires multiple tools, combine their outputs to deliver a comprehensive response.  \nExample: For an inquiry about canceling an order, retrieve the order and product details, and also reference the FAQ for the cancellation policy.\n\nAlways aim to deliver clear, concise, and user-focused solutions to ensure the best possible experience.",
                 "display_name": "Agent Instructions",
                 "advanced": false,
                 "input_types": [
@@ -1272,7 +1272,7 @@
           },
           "showNode": true,
           "type": "Agent",
-          "id": "Agent-a93d1"
+          "id": "Agent-pat5r"
         },
         "selected": false,
         "measured": {
@@ -1281,11 +1281,11 @@
         }
       },
       {
-        "id": "URL-lu9bF",
+        "id": "URL-vtoWv",
         "type": "genericNode",
         "position": {
-          "x": 446.1114917093948,
-          "y": 45
+          "x": 643.2117806167848,
+          "y": 189.88125565208344
         },
         "data": {
           "node": {
@@ -1509,7 +1509,7 @@
           },
           "showNode": true,
           "type": "URL",
-          "id": "URL-lu9bF"
+          "id": "URL-vtoWv"
         },
         "selected": false,
         "measured": {
@@ -1518,11 +1518,11 @@
         }
       },
       {
-        "id": "CalculatorComponent-rqeB9",
+        "id": "CalculatorComponent-gkwoV",
         "type": "genericNode",
         "position": {
-          "x": 448.9691955085344,
-          "y": 491.2264172137641
+          "x": 646.0694844159245,
+          "y": 636.1076728658475
         },
         "data": {
           "node": {
@@ -1706,7 +1706,7 @@
           },
           "showNode": true,
           "type": "CalculatorComponent",
-          "id": "CalculatorComponent-rqeB9"
+          "id": "CalculatorComponent-gkwoV"
         },
         "selected": false,
         "measured": {
@@ -1715,11 +1715,11 @@
         }
       },
       {
-        "id": "AstraDB-PtSTn",
+        "id": "AstraDB-SyTOV",
         "type": "genericNode",
         "position": {
-          "x": 450.0733167751516,
-          "y": 934.7311718244439
+          "x": 647.1736056825417,
+          "y": 1079.6124274765273
         },
         "data": {
           "node": {
@@ -2070,7 +2070,7 @@
                 "options_metadata": [
                   {
                     "status": null,
-                    "collections": 1,
+                    "collections": 3,
                     "api_endpoint": "https://f68242da-b929-4c7b-982c-255ebb980fe4-us-east1.apps.astra.datastax.com",
                     "icon": "data"
                   }
@@ -2558,21 +2558,20 @@
           },
           "showNode": true,
           "type": "AstraDB",
-          "id": "AstraDB-PtSTn"
+          "id": "AstraDB-SyTOV"
         },
-        "selected": false,
+        "selected": true,
         "measured": {
           "width": 320,
           "height": 606
-        },
-        "dragging": false
+        }
       },
       {
-        "id": "File-Cud6f",
+        "id": "File-wOuso",
         "type": "genericNode",
         "position": {
-          "x": -182.1002889073901,
-          "y": 2238.643063505279
+          "x": 15,
+          "y": 2383.5243191573622
         },
         "data": {
           "node": {
@@ -2817,21 +2816,20 @@
           },
           "showNode": true,
           "type": "File",
-          "id": "File-Cud6f"
+          "id": "File-wOuso"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 228
-        },
-        "dragging": false
+        }
       },
       {
-        "id": "RecursiveCharacterTextSplitter-x0wsG",
+        "id": "RecursiveCharacterTextSplitter-5tNsQ",
         "type": "genericNode",
         "position": {
-          "x": 268.76834305415827,
-          "y": 2002.2342196783106
+          "x": 465.8686319615484,
+          "y": 2147.115475330394
         },
         "data": {
           "node": {
@@ -2982,21 +2980,20 @@
           },
           "showNode": true,
           "type": "RecursiveCharacterTextSplitter",
-          "id": "RecursiveCharacterTextSplitter-x0wsG"
+          "id": "RecursiveCharacterTextSplitter-5tNsQ"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 467
-        },
-        "dragging": false
+        }
       },
       {
-        "id": "AstraDB-DdaUy",
+        "id": "AstraDB-HO1Mz",
         "type": "genericNode",
         "position": {
-          "x": 709.9783719448975,
-          "y": 1899.6456262377478
+          "x": 907.0786608522876,
+          "y": 2044.5268818898312
         },
         "data": {
           "node": {
@@ -3073,7 +3070,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "api_endpoint",
-                "value": "https://f68242da-b929-4c7b-982c-255ebb980fe4-us-east1.apps.astra.datastax.com",
+                "value": "",
                 "display_name": "Astra DB API Endpoint",
                 "advanced": true,
                 "dynamic": false,
@@ -3140,17 +3137,8 @@
               "collection_name": {
                 "tool_mode": false,
                 "trace_as_metadata": true,
-                "options": [
-                  "company_faq"
-                ],
-                "options_metadata": [
-                  {
-                    "records": 0,
-                    "provider": "nvidia",
-                    "icon": "NVIDIA",
-                    "model": "NV-Embed-QA"
-                  }
-                ],
+                "options": [],
+                "options_metadata": [],
                 "combobox": true,
                 "dialog_inputs": {
                   "functionality": "create",
@@ -3308,9 +3296,9 @@
                 "placeholder": "",
                 "show": true,
                 "name": "collection_name",
-                "value": "company_faq",
+                "value": "",
                 "display_name": "Collection",
-                "advanced": false,
+                "advanced": true,
                 "dynamic": false,
                 "info": "The name of the collection within Astra DB where the vectors will be stored.",
                 "real_time_refresh": true,
@@ -3341,17 +3329,8 @@
               "database_name": {
                 "tool_mode": false,
                 "trace_as_metadata": true,
-                "options": [
-                  "agentic-ai"
-                ],
-                "options_metadata": [
-                  {
-                    "status": null,
-                    "collections": 1,
-                    "api_endpoint": "https://f68242da-b929-4c7b-982c-255ebb980fe4-us-east1.apps.astra.datastax.com",
-                    "icon": "data"
-                  }
-                ],
+                "options": [],
+                "options_metadata": [],
                 "combobox": true,
                 "dialog_inputs": {
                   "functionality": "create",
@@ -3440,9 +3419,9 @@
                 "placeholder": "",
                 "show": true,
                 "name": "database_name",
-                "value": "agentic-ai",
+                "value": "",
                 "display_name": "Database",
-                "advanced": false,
+                "advanced": true,
                 "dynamic": false,
                 "info": "The Database name for the Astra DB instance.",
                 "real_time_refresh": true,
@@ -3654,7 +3633,7 @@
                 "_input_type": "BoolInput"
               },
               "token": {
-                "load_from_db": true,
+                "load_from_db": false,
                 "required": true,
                 "placeholder": "",
                 "show": true,
@@ -3753,21 +3732,20 @@
           },
           "showNode": true,
           "type": "AstraDB",
-          "id": "AstraDB-DdaUy"
+          "id": "AstraDB-HO1Mz"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 570
-        },
-        "dragging": false
+          "height": 405
+        }
       },
       {
-        "id": "AstraDBToolComponent-feC95",
+        "id": "AstraDBToolComponent-ADBBb",
         "type": "genericNode",
         "position": {
-          "x": 16.22373581186332,
-          "y": -99.88125565208344
+          "x": 213.32402471925343,
+          "y": 45
         },
         "data": {
           "node": {
@@ -4065,21 +4043,20 @@
           },
           "showNode": true,
           "type": "AstraDBToolComponent",
-          "id": "AstraDBToolComponent-feC95"
+          "id": "AstraDBToolComponent-ADBBb"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 710
-        },
-        "dragging": false
+        }
       },
       {
-        "id": "AstraDBToolComponent-WtvFx",
+        "id": "AstraDBToolComponent-3baDu",
         "type": "genericNode",
         "position": {
-          "x": 17.312332864257314,
-          "y": 938.6231376302958
+          "x": 214.41262177164742,
+          "y": 1083.5043932823792
         },
         "data": {
           "node": {
@@ -4377,27 +4354,26 @@
           },
           "showNode": true,
           "type": "AstraDBToolComponent",
-          "id": "AstraDBToolComponent-WtvFx"
+          "id": "AstraDBToolComponent-3baDu"
         },
         "selected": false,
         "measured": {
           "width": 320,
           "height": 710
-        },
-        "dragging": false
+        }
       }
     ],
     "edges": [
       {
-        "source": "URL-lu9bF",
-        "target": "Agent-a93d1",
-        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-lu9bFœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-URL-lu9bF{œdataTypeœ:œURLœ,œidœ:œURL-lu9bFœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-a93d1{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "URL-vtoWv",
+        "target": "Agent-pat5r",
+        "sourceHandle": "{œdataTypeœ:œURLœ,œidœ:œURL-vtoWvœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-URL-vtoWv{œdataTypeœ:œURLœ,œidœ:œURL-vtoWvœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-pat5r{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "URL",
-            "id": "URL-lu9bF",
+            "id": "URL-vtoWv",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
@@ -4405,7 +4381,7 @@
           },
           "targetHandle": {
             "fieldName": "tools",
-            "id": "Agent-a93d1",
+            "id": "Agent-pat5r",
             "inputTypes": [
               "Tool"
             ],
@@ -4417,15 +4393,15 @@
         "className": ""
       },
       {
-        "source": "CalculatorComponent-rqeB9",
-        "target": "Agent-a93d1",
-        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-rqeB9œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-CalculatorComponent-rqeB9{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-rqeB9œ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-a93d1{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "CalculatorComponent-gkwoV",
+        "target": "Agent-pat5r",
+        "sourceHandle": "{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-gkwoVœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-CalculatorComponent-gkwoV{œdataTypeœ:œCalculatorComponentœ,œidœ:œCalculatorComponent-gkwoVœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-pat5r{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "CalculatorComponent",
-            "id": "CalculatorComponent-rqeB9",
+            "id": "CalculatorComponent-gkwoV",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
@@ -4433,7 +4409,7 @@
           },
           "targetHandle": {
             "fieldName": "tools",
-            "id": "Agent-a93d1",
+            "id": "Agent-pat5r",
             "inputTypes": [
               "Tool"
             ],
@@ -4445,15 +4421,15 @@
         "className": ""
       },
       {
-        "source": "ChatInput-SNZiC",
-        "target": "Agent-a93d1",
-        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-SNZiCœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "id": "reactflow__edge-ChatInput-SNZiC{œdataTypeœ:œChatInputœ,œidœ:œChatInput-SNZiCœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-a93d1{œfieldNameœ:œinput_valueœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "ChatInput-Q9VLr",
+        "target": "Agent-pat5r",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Q9VLrœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-ChatInput-Q9VLr{œdataTypeœ:œChatInputœ,œidœ:œChatInput-Q9VLrœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-pat5r{œfieldNameœ:œinput_valueœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "sourceHandle": {
             "dataType": "ChatInput",
-            "id": "ChatInput-SNZiC",
+            "id": "ChatInput-Q9VLr",
             "name": "message",
             "output_types": [
               "Message"
@@ -4461,7 +4437,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "Agent-a93d1",
+            "id": "Agent-pat5r",
             "inputTypes": [
               "Message"
             ],
@@ -4473,15 +4449,15 @@
         "className": ""
       },
       {
-        "source": "Agent-a93d1",
-        "target": "ChatOutput-uIh5Y",
-        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-a93d1œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-uIh5Yœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "id": "reactflow__edge-Agent-a93d1{œdataTypeœ:œAgentœ,œidœ:œAgent-a93d1œ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-uIh5Y{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-uIh5Yœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "Agent-pat5r",
+        "target": "ChatOutput-evLYe",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-pat5rœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-evLYeœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-Agent-pat5r{œdataTypeœ:œAgentœ,œidœ:œAgent-pat5rœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-evLYe{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-evLYeœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "data": {
           "sourceHandle": {
             "dataType": "Agent",
-            "id": "Agent-a93d1",
+            "id": "Agent-pat5r",
             "name": "response",
             "output_types": [
               "Message"
@@ -4489,7 +4465,7 @@
           },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-uIh5Y",
+            "id": "ChatOutput-evLYe",
             "inputTypes": [
               "Data",
               "DataFrame",
@@ -4503,150 +4479,155 @@
         "className": ""
       },
       {
-        "source": "AstraDB-PtSTn",
-        "sourceHandle": "{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-PtSTnœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
-        "target": "Agent-a93d1",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "AstraDB-SyTOV",
+        "target": "Agent-pat5r",
+        "sourceHandle": "{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-SyTOVœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-AstraDB-SyTOV{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-SyTOVœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-pat5r{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "tools",
-            "id": "Agent-a93d1",
-            "inputTypes": [
-              "Tool"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "AstraDB",
-            "id": "AstraDB-PtSTn",
+            "id": "AstraDB-SyTOV",
             "name": "component_as_tool",
             "output_types": [
               "Tool"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-pat5r",
+            "inputTypes": [
+              "Tool"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__AstraDB-PtSTn{œdataTypeœ:œAstraDBœ,œidœ:œAstraDB-PtSTnœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-a93d1{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "File-Cud6f",
-        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-Cud6fœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
-        "target": "RecursiveCharacterTextSplitter-x0wsG",
-        "targetHandle": "{œfieldNameœ:œdata_inputœ,œidœ:œRecursiveCharacterTextSplitter-x0wsGœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}",
+        "source": "File-wOuso",
+        "target": "RecursiveCharacterTextSplitter-5tNsQ",
+        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-wOusoœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
+        "targetHandle": "{œfieldNameœ:œdata_inputœ,œidœ:œRecursiveCharacterTextSplitter-5tNsQœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-File-wOuso{œdataTypeœ:œFileœ,œidœ:œFile-wOusoœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-RecursiveCharacterTextSplitter-5tNsQ{œfieldNameœ:œdata_inputœ,œidœ:œRecursiveCharacterTextSplitter-5tNsQœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}",
         "data": {
+          "sourceHandle": {
+            "dataType": "File",
+            "id": "File-wOuso",
+            "name": "data",
+            "output_types": [
+              "Data"
+            ]
+          },
           "targetHandle": {
             "fieldName": "data_input",
-            "id": "RecursiveCharacterTextSplitter-x0wsG",
+            "id": "RecursiveCharacterTextSplitter-5tNsQ",
             "inputTypes": [
               "Document",
               "Data"
             ],
             "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "File",
-            "id": "File-Cud6f",
-            "name": "data",
-            "output_types": [
-              "Data"
-            ]
           }
         },
-        "id": "xy-edge__File-Cud6f{œdataTypeœ:œFileœ,œidœ:œFile-Cud6fœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-RecursiveCharacterTextSplitter-x0wsG{œfieldNameœ:œdata_inputœ,œidœ:œRecursiveCharacterTextSplitter-x0wsGœ,œinputTypesœ:[œDocumentœ,œDataœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "RecursiveCharacterTextSplitter-x0wsG",
-        "sourceHandle": "{œdataTypeœ:œRecursiveCharacterTextSplitterœ,œidœ:œRecursiveCharacterTextSplitter-x0wsGœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
-        "target": "AstraDB-DdaUy",
-        "targetHandle": "{œfieldNameœ:œingest_dataœ,œidœ:œAstraDB-DdaUyœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "RecursiveCharacterTextSplitter-5tNsQ",
+        "target": "AstraDB-HO1Mz",
+        "sourceHandle": "{œdataTypeœ:œRecursiveCharacterTextSplitterœ,œidœ:œRecursiveCharacterTextSplitter-5tNsQœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
+        "targetHandle": "{œfieldNameœ:œingest_dataœ,œidœ:œAstraDB-HO1Mzœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-RecursiveCharacterTextSplitter-5tNsQ{œdataTypeœ:œRecursiveCharacterTextSplitterœ,œidœ:œRecursiveCharacterTextSplitter-5tNsQœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-AstraDB-HO1Mz{œfieldNameœ:œingest_dataœ,œidœ:œAstraDB-HO1Mzœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "ingest_data",
-            "id": "AstraDB-DdaUy",
-            "inputTypes": [
-              "Data"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "RecursiveCharacterTextSplitter",
-            "id": "RecursiveCharacterTextSplitter-x0wsG",
+            "id": "RecursiveCharacterTextSplitter-5tNsQ",
             "name": "data",
             "output_types": [
               "Data"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "ingest_data",
+            "id": "AstraDB-HO1Mz",
+            "inputTypes": [
+              "Data"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__RecursiveCharacterTextSplitter-x0wsG{œdataTypeœ:œRecursiveCharacterTextSplitterœ,œidœ:œRecursiveCharacterTextSplitter-x0wsGœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-AstraDB-DdaUy{œfieldNameœ:œingest_dataœ,œidœ:œAstraDB-DdaUyœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "AstraDBToolComponent-feC95",
-        "sourceHandle": "{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-feC95œ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}",
-        "target": "Agent-a93d1",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "AstraDBToolComponent-ADBBb",
+        "target": "Agent-pat5r",
+        "sourceHandle": "{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-ADBBbœ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-AstraDBToolComponent-ADBBb{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-ADBBbœ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}-Agent-pat5r{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "tools",
-            "id": "Agent-a93d1",
-            "inputTypes": [
-              "Tool"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "AstraDBToolComponent",
-            "id": "AstraDBToolComponent-feC95",
+            "id": "AstraDBToolComponent-ADBBb",
             "name": "api_build_tool",
             "output_types": [
               "Tool"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-pat5r",
+            "inputTypes": [
+              "Tool"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__AstraDBToolComponent-feC95{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-feC95œ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}-Agent-a93d1{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "AstraDBToolComponent-WtvFx",
-        "sourceHandle": "{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-WtvFxœ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}",
-        "target": "Agent-a93d1",
-        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "source": "AstraDBToolComponent-3baDu",
+        "target": "Agent-pat5r",
+        "sourceHandle": "{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-3baDuœ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-AstraDBToolComponent-3baDu{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-3baDuœ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}-Agent-pat5r{œfieldNameœ:œtoolsœ,œidœ:œAgent-pat5rœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "tools",
-            "id": "Agent-a93d1",
-            "inputTypes": [
-              "Tool"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "AstraDBToolComponent",
-            "id": "AstraDBToolComponent-WtvFx",
+            "id": "AstraDBToolComponent-3baDu",
             "name": "api_build_tool",
             "output_types": [
               "Tool"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-pat5r",
+            "inputTypes": [
+              "Tool"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__AstraDBToolComponent-WtvFx{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-WtvFxœ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œToolœ]}-Agent-a93d1{œfieldNameœ:œtoolsœ,œidœ:œAgent-a93d1œ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       }
     ],
     "viewport": {
-      "x": 541.8409789308107,
-      "y": 76.68792354619586,
-      "zoom": 0.5041762274472968
+      "x": 175.84294090255105,
+      "y": -152.93429719467952,
+      "zoom": 0.6096275470381519
     }
   },
-  "description": "Design Dialogues with Langflow.",
-  "name": "Extended Agentic AI",
+  "description": "Engineered for Excellence, Built for Business.",
+  "name": "Customer Support Agent",
   "last_tested_version": "1.2.0",
   "endpoint_name": null,
   "is_component": false

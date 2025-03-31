@@ -239,7 +239,7 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
     - **Tool Params:** `productId`
 3. Connect the `Astra DB Tool` component to the `Agent` component
 
-![structured-agentic-ai](./assets/structured-agentic-ai.png)
+![customer-support-agent](./assets/customer-support-agent.png)
 
 #### Steps 💬: Instruct the Agent
 Let's provide our Agent a bit more information about what it's capable of doing and what guardrails to take into account. This enables more accuracy for our Customer Support Agent.
