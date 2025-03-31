@@ -6,3 +6,4 @@
 *.log
 *.lock
 /.langflow
+flow.py

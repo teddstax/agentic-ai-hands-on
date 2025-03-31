@@ -202,7 +202,7 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
 
  🎉 You'll see the Agent making use of the Astra DB knowledge base to find relevant content and then running the calculator to calculate the amount of hours to wait.
 
- ### 5. 📈 Adding structured data
+### 5. 📈 Adding structured data
 **Goal:** Enable your Agent to retrieve structured order and product details.
 
 #### Preparation: Add Orders data
@@ -278,3 +278,31 @@ Let's run some questions. For instance:
 - How much euro is order 1001
 
 Observe how all the different tools are being used to answer the user's questions.
+
+### 5. 📱 Add an app as a wrapper around Langflow
+In this step we'll create a simple Python app that runs the Langflow flow.
+
+#### Steps: Use the Langflow API endpoint in Python
+1. In Langflow exit the Playground and click on `API` in the right top corner
+2. Click on Python API
+3. Copy the code and paste it in a new file called `flow.py`
+
+![langflow-python-api](./assets/langflow-python-api.png)
+
+Let's run it!
+
+```bash
+uv run flow.py "What is in order 1001"
+```
+
+### 6. 🤩 Add a visual front-end
+In this step we'll use a simple Streamlit app that supports Customer Support Agents.
+
+** 🚨 Important:** This app is reliant on `flow.py`, so make sure the previous step works!
+
+In order to run the app:
+```bash
+uv run streamlit run app.py
+```
+
+![streamlit-front-end](./assets/streamlit-front-end.png)
