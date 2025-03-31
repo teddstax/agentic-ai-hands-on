@@ -225,7 +225,7 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
     - **Tool Name:** `OrderLookup`  
     - **Tool Description:** `A tool used to look up an order based on its ID`   
     - **Collection Name:** `orders`  
-    - Ensure `Astra DB Application Token` and `API endpoint` are configures
+    - Ensure `Astra DB Application Token` and `API endpoint` are configured
     - **Tool Params:** `orderNumber`
 4. Connect the `Astra DB Tool` component to the `Agent` component
 
@@ -235,7 +235,7 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
     - **Tool Name:** `ProductLookup`  
     - **Tool Description:** `A tool used to look up a product based on its ID`   
     - **Collection Name:** `products`  
-    - Ensure `Astra DB Application Token` and `API endpoint` are configures
+    - Ensure `Astra DB Application Token` and `API endpoint` are configured
     - **Tool Params:** `productId`
 3. Connect the `Astra DB Tool` component to the `Agent` component
 
