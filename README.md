@@ -67,130 +67,68 @@ This starts Langflow and opens a port to your Codespace in the cloud. In case yo
 
 🎉 Congrats! You finished the set-up part of the workshop. Now for the fun part!
 
-## 🎯 Doel van de workshop
-Leer hoe je een eenvoudige AI-agent bouwt met Langflow, deze verrijkt met Retrieval-Augmented Generation (RAG) via Astra DB, en vervolgens uitbreidt met tools voor krachtige agentic AI-functionaliteit.
+## 📦 Workshop follow-along
 
----
+### 1. 🧱 Setup of a simple Langflow Chatbot
+**Goal:** Create a chatbot with: input → model → output
 
-## 🛠️ Benodigdheden (vooraf installeren)
-```bash
-pip install langflow openai astrapy python-dotenv
-```
+#### Steps:
+1. Open Langflow
+2. Click `+ New Flow` / `+ Blank Flow`
+3. Collapse `Inputs` and drag the `Chat Input` component to the canvas
+4. Collapse `Models` and drag the `OpenAI` component to the canvas. Connect `Input` to the `Chat Input`
+5. Collapse `Outputs` and drag the `Chat Output` component to the canvas. Connect `Message` to the `Chat Output` component
 
-Zorg ook voor:
-- Een OpenAI API key
-- Een Astra DB account en project met aangemaakte vector-collectie
+![chatbot-flow](./assets/chatbot-flow.png)
 
----
+👏 Amazing! You just built your first flow. Let's run it by clicking `▶️ Playground` and asking the question:
 
-## 📦 Workshop Stappenplan
+    What's the difference between AI and Machine Learning?
 
-### 1. 🔹 Introductie: Wat is een Agent?
-Een agent is een AI die input ontvangt, context begrijpt en acties onderneemt via tools of geheugen. We bouwen vandaag een simpele agent en breiden die uit met geheugen, kennis, en tools.
+You'll see the Large Language Model (LLM) answer your question nicely!
 
----
+### 2. 🧭 Familiarize yourself with Langflow
+**Goal:** Understand the main components of Langflow
 
-### 2. 🧱 Setup van een Eenvoudige Langflow Agent
-**Doel:** Maak een flow met input → model → output
+#### Steps:
+1. If still open, close the Playground popup
+2. Select `Chat Input` and click `Controls`
+3. You'll see a field name `Text`, type `What's the difference between AI and Machine Learning` in the text field. close the popup
+4. Select `Chat Output`, the three dots `...` and click `Expand`
+5. Do the same with `Chat Input`
+6. Click the play button `▶️` on the `Chat Output` component and see the flow run
 
-#### Stappen:
-1. Open Langflow of gebruik Python-code:
-```python
-from langflow import LangflowGraph
-from langflow.base.components import ChatInput, ChatOutput, OpenAIModel
+Notice the running time of the separate components.  
+Click the magnifying glass `🔍` in the `OpenAI` component. This shows you a popup with the intermediate data that is passed to the next component. Very useful for debugging purposes!
 
-graph = LangflowGraph(name="SimpleAgent")
+![chatbot-run](./assets/chatbot-run.png)
 
-input_node = ChatInput(name="UserInput")
-model_node = OpenAIModel(name="OpenAIModel", model_name="gpt-4")
-output_node = ChatOutput(name="AgentOutput")
+### 4. 🧠 Agentic AI with Langflow
+**Goal:** Create an AI Agent that has access to a URL tool and a Calculator tool
 
-graph.connect(input_node, model_node)
-graph.connect(model_node, output_node)
-```
-2. Test een simpele prompt zoals:
-> "Wat is het verschil tussen AI en machine learning?"
+![basic-agentic-ai](./assets/basic-agentic-ai.png)
 
----
+#### Steps:
+1. Reproduce the above flow (or load it from `./flows/basic-agentic-ai.json`)
+2. Esure the `OPENAI_API_KEY` has been set
+3. When adding the `URL` and `Calculator` components to the canvas, select them and click `Tool mode`
 
-### 3. 📚 Retrieval-Augmented Generation (RAG) met Astra DB
-**Doel:** Voeg externe kennis toe aan je agent
+👏 Amazing! You just built your first AI Agent. Let's run it by clicking `▶️ Playground` and asking the question:
 
-#### Voorbereiding:
-- Upload een dataset naar je Astra DB (bijv. een aantal documenten over het onderwerp 'duurzaamheid')
-- Verzamel je `ASTRA_DB_TOKEN`, `API_ENDPOINT`, `KEYSPACE`, en `COLLECTION_NAME`
+    What is 2x the value of a Euro in Dollars
 
-#### Stappen:
-```python
-from langflow.components.vectorstores import AstraDBVectorStore
-from langflow.components.retrievers import VectorStoreRetriever
-from langflow.components.memory import ContextualMemory
+You'll get an answer stating a value of $2.16 or something (as of April 2025).
 
-astra_vectorstore = AstraDBVectorStore(
-    name="AstraStore",
-    token="<ASTRA_DB_TOKEN>",
-    api_endpoint="<ASTRA_DB_API_ENDPOINT>",
-    keyspace="<ASTRA_DB_KEYSPACE>",
-    collection_name="knowledge"
-)
+To see the magic behind, simply click the down arrow `🔽`. The Agent decided to use two tools:
+1. The URL tool to fetch the current exchange rates
+2. The Calculator tool to multiply the value by two
 
-retriever = VectorStoreRetriever(name="AstraRetriever")
-memory = ContextualMemory(name="ContextualMemory")
+![tool-usage](./assets/tool-usage.png)
 
-graph.connect(astra_vectorstore, retriever)
-graph.connect(retriever, memory)
-graph.connect(input_node, memory)
-graph.connect(memory, model_node)
-```
+### 3. 📚 Retrieval-Augmented Generation (RAG) with Astra DB
+**Goal:** Adding external knowledge by making use of Vector Search
 
-#### Voorbeeldvraag:
-> "Wat zijn de belangrijkste principes van circulaire economie?"
+#### Preparation:
+Load a data set in your `agentic-ai` database in [Astra DB](https://astra.datastax.com) by creating an additional flow. Either by creating a new flow or adding components to your existing flow.
+1. Collapse `Data` and drag the `URL` component to the canvas
 
----
-
-### 4. 🧠 Agentic Gedrag toevoegen met Tools
-**Doel:** Laat de agent zelfstandig taken uitvoeren met tools zoals web search of rekenen
-
-#### Stappen:
-```python
-from langflow.components.tools import ToolNode
-
-search_tool = ToolNode(name="SearchTool", tool_type="web_search")
-calculator_tool = ToolNode(name="Calculator", tool_type="math")
-
-graph.connect(input_node, search_tool)
-graph.connect(search_tool, model_node)
-graph.connect(input_node, calculator_tool)
-graph.connect(calculator_tool, model_node)
-```
-
-#### Voorbeeldvragen:
-> "Zoek het laatste nieuws over CO2-compensatie"
-> 
-> "Wat is 1,5 keer de CO2-uitstoot van Nederland in 2023?"
-
----
-
-## 🌍 Case: Duurzame Toekomstscenario's (voor Agentic AI)
-**Context:** Stel je hebt een AI-agent die overheidsdocumenten, klimaatakkoorden en economische rapporten heeft geïndexeerd in Astra DB. Je wilt hem vragen laten beantwoorden en plannen laten opstellen op basis van real-world kennis.
-
-#### Voorbeelden:
-- "Stel een stappenplan op voor een stad om in 2035 CO2-neutraal te zijn."
-- "Welke subsidies zijn beschikbaar in Nederland voor circulair bouwen?"
-- "Maak een inschatting van de economische impact van een 10% reductie in stikstof."
-
----
-
-## ✅ Afronden & Reflectie
-- Wat heb je gebouwd?
-- Hoe zie je de rol van agentic AI in jouw werkveld?
-- Wat zijn ethische overwegingen bij het inzetten van zelfredzame AI-systemen?
-
----
-
-## 🧩 Bonus: Vervolg
-- Integreer je eigen API’s als tools
-- Voeg planningsmodules toe (langchain agents, task decomposition)
-- Gebruik voice- of multimodale input
-
-Veel succes en plezier met het bouwen van je eigen Agentic AI! 🚀
