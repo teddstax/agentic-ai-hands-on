@@ -1,4 +1,4 @@
-# 🧠 Agentic AI Workshop – Creating a Customer Support Agent
+# 🧠 Agentic AI Workshop – Customer Support Agent
 
 ## 🎯 Goal of the workshop
 Learn how to build a powerful, intelligent customer support agent using Langflow. You’ll start by creating a simple chatbot with OpenAI, then enrich it with retrieval-augmented generation (RAG) by connecting it to your own FAQ knowledge base using Astra DB. Finally, you’ll add tools such as order lookups, product info access, calculators, and web tools to make your agent truly agentic—capable of reasoning, taking actions, and handling real-world customer support scenarios.
