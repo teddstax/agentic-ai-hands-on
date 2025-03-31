@@ -23,14 +23,14 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 - Note down the **API Endpoint** which can be found in the right pane underneath *Database details*.
 - Click on `Generate Token` and give it a name, i.e. `agentic-ai-token` and click `Generate`. Now click on the copy button and paste the **Application Token** somewhere for later use
 
-![astradb](./assets/astra-new-db.png)
+    ![astradb](./assets/astra-new-db.png)
 
 ### Sign up for OpenAI
 - Create an [OpenAI account](https://platform.openai.com/signup) or [sign in](https://platform.openai.com/login).
 - Navigate to the [API key page](https://platform.openai.com/account/api-keys) and create a new **Secret Key**, optionally naming the key.
     - *Alternatively we'll provide some OpenAI API keys to use for this workshop*
 
-![openai](./assets/openai-key.png)
+    ![openai](./assets/openai-key.png)
 
 ## ⚡️ Open this tutorial on Github Codespaces
 To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
@@ -48,8 +48,6 @@ To make life easier, we'll use the awesome Github Codespace functionality. Githu
 
     ![codespace](./assets/create-codespace.png)
 
-Now you're ready to rock and roll! 🥳
-
 5. Configure the secrets as follows:
 
 - Copy `.env.example` to `.env`
@@ -57,13 +55,13 @@ Now you're ready to rock and roll! 🥳
 
 6. Now we can run Langflow as follows in the terminal window:
 
-```bash
-pip install uv
-uv sync
-uv run langflow run --env-file .env
-```
+    ```bash
+    pip install uv
+    uv sync
+    uv run langflow run --env-file .env
+    ```
 
-This starts Langflow and opens a port to your Codespace in the cloud. In case you loose track of the URL to Langflow, just click on `PORTS` in the terminal window.
+    This starts Langflow and opens a port to your Codespace in the cloud. In case you loose track of the URL to Langflow, just click on `PORTS` in the terminal window.
 
 🎉 Congrats! You finished the set-up part of the workshop. Now for the fun part!
 
@@ -103,7 +101,7 @@ Click the magnifying glass `🔍` in the `OpenAI` component. This shows you a po
 
 ![chatbot-run](./assets/chatbot-run.png)
 
-### 4. 🧠 Agentic AI with Langflow
+### 3. 🧠 Agentic AI with Langflow
 **Goal:** Create an AI Agent that has access to a URL tool and a Calculator tool
 
 ![basic-agentic-ai](./assets/basic-agentic-ai.png)
@@ -125,7 +123,7 @@ To see the magic behind, simply click the down arrow `🔽`. The Agent decided t
 
 ![tool-usage](./assets/tool-usage.png)
 
-### 3. 📚 Retrieval-Augmented Generation (RAG) with Astra DB
+### 4. 📚 Retrieval-Augmented Generation (RAG) with Astra DB
 **Goal:** Adding external knowledge by making use of Vector Search
 
 #### Preparation:
