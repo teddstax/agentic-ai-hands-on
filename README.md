@@ -1,7 +1,13 @@
-# 🧠 Agentic AI Workshop – Langflow + Astra DB
+# 🧠 Agentic AI Workshop – Creating a Customer Support Agent
 
 ## 🎯 Goal of the workshop
-Learn how to build a simple AI agent with Langflow, enhance it with Retrieval-Augmented Generation (RAG) using Astra DB, and then expand it with tools for powerful agentic AI functionality.
+Learn how to build a powerful, intelligent customer support agent using Langflow. You’ll start by creating a simple chatbot with OpenAI, then enrich it with retrieval-augmented generation (RAG) by connecting it to your own FAQ knowledge base using Astra DB. Finally, you’ll add tools such as order lookups, product info access, calculators, and web tools to make your agent truly agentic—capable of reasoning, taking actions, and handling real-world customer support scenarios.
+
+By the end of this workshop, you’ll have a fully functional AI agent that can:
+- Answer FAQs using vector-based document search
+- Retrieve live order and product details from structured data
+- Combine tools (like calculators and lookups) to generate multi-step responses
+- Adapt dynamically to user intent—just like a real support agent would
 
 ## 🛠️ Prerequisites
 This workshop assumes you have access to:
@@ -32,7 +38,7 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 
     ![openai](./assets/openai-key.png)
 
-## ⚡️ Open this tutorial on Github Codespaces
+### ⚡️ Open this tutorial on Github Codespaces
 To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
 
 1. Open the [agentic-ai-workshop](https://github.com/michelderu/agentic-ai-workshop) repository
@@ -126,7 +132,7 @@ To see the magic behind, simply click the down arrow `🔽`. The Agent decided t
 ### 4. 📚 Retrieval-Augmented Generation (RAG) with Astra DB
 **Goal:** Adding external knowledge by making use of Vector Search and RAG
 
-#### Preparation: Creating an FAQ collection
+#### Preparation: Creating a FAQ collection
 In this step we'll create a new collection in your `agentic-ai` database in [Astra DB](https://astra.datastax.com) to store data as a knowledge base.
 
 First we need to create a collection to store the data:
@@ -141,13 +147,19 @@ First we need to create a collection to store the data:
 You just created a new empty collection to store knowledge base articles.
 
 #### Steps: Add Astra DB as a RAG tool in Langflow
+
+![astra-rag-agent](./assets/astra-rag-agent.png)
+
 Extend your existing Basic Agentic AI flow with the following:
 1. Collapse `Vector Stores` and drag `Astra DB` to the canvas
 2. Click the component and select `Tool mode`
 3. Make sure the `Astra DB Application Token` is configured, then select your `agentic-ai` database and `company_faq` collection
-4. Connect it to the `Agent` component
-
-![astra-rag-agent](./assets/astra-rag-agent.png)
+4. Click `Edit tools` and update both `Tool descriptions` by replacing
+    - `Ingest and search documents in Astra DB` with
+    - `Answer frequently asked questions (FAQs) about shipping, returns, placing orders, and more.`
+    - ![astra-rag-agent](./assets/rag-edit-tools.png)
+    - Click `Save`
+4. Connect the `Astra DB` component to the `Agent` component
 
 Let's run it by clicking `▶️ Playground` and asking the question:
 
@@ -179,7 +191,7 @@ In this step we'll have a look at the dataset in your `agentic-ai` database in [
 
 To see Vector Search in action, type the following in the text box `Vector Search`:
 
-    What are the shipping times
+    What are your shipping times
 
 You'll see the chunk with shipping times show up as the first result. You just ran an ANN search transparantly utilizing the Vectorize functionality in Astra DB that does the vectorization for you on demand.
 
@@ -188,4 +200,81 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
 
     How many hours do I need to wait for a domestic order?
 
-You'll see the Agent making use of the Astra DB knowledge base to find relevant content and then running the calculator to calculate the amount of hours to wait 🎉
+ 🎉 You'll see the Agent making use of the Astra DB knowledge base to find relevant content and then running the calculator to calculate the amount of hours to wait.
+
+ ### 5. 📈 Adding structured data
+**Goal:** Enable your Agent to retrieve structured order and product details.
+
+#### Preparation: Add Orders data
+1. Browse to your `agentic-ai` database on [Astra DB](https://astra.datastax.com)
+2. Click `Data Explorer` and click `Create Collection +`
+3. Name the collection `orders`, disable the `Vector-enabled collection` switch and click `Create Collection`
+4. Click `Load Data` and upload the file: [sample_orders.csv](./sample_orders.csv)
+5. Verify the data was loaded into Astra DB
+
+#### Preparation: Add Products data
+1. Click `Create Collection +`
+2. Name the collection `products`, disable the `Vector-enabled collection` switch and click `Create Collection`
+3. Click `Load Data` and upload the file: [sample_products.csv](./sample_products.csv)
+4. Verify the data was loaded into Astra DB
+
+#### Steps 🛠️🔍: Add Order Lookup to the agent 
+1. Return to your Langflow flow
+2. Collapse `Tools` and drag `Astra DB Tool` to the canvas
+3. Configure as follows:
+    - **Tool Name:** `OrderLookup`  
+    - **Tool Description:** `A tool used to look up an order based on its ID`   
+    - **Collection Name:** `orders`  
+    - Ensure `Astra DB Application Token` and `API endpoint` are configures
+    - **Tool Params:** `orderNumber`
+4. Connect the `Astra DB Tool` component to the `Agent` component
+
+#### Steps 🛠️🔍: Add Products Lookup to the agent 
+1. Collapse `Tools` and drag `Astra DB Tool` to the canvas
+2. Configure as follows:
+    - **Tool Name:** `ProductLookup`  
+    - **Tool Description:** `A tool used to look up a product based on its ID`   
+    - **Collection Name:** `products`  
+    - Ensure `Astra DB Application Token` and `API endpoint` are configures
+    - **Tool Params:** `productId`
+3. Connect the `Astra DB Tool` component to the `Agent` component
+
+![structured-agentic-ai](./assets/structured-agentic-ai.png)
+
+#### Steps 💬: Instruct the Agent
+Let's provide our Agent a bit more information about what it's capable of doing and what guardrails to take into account. This enables more accuracy for our Customer Support Agent.
+
+1. On the `Agent` component, click the square at `Agent Instructions`
+2. Paste the following instruction:
+
+```text
+You are a skilled customer service manager and information router. Your primary responsibility is to use the available tools to accurately address user inquiries and provide detailed, helpful responses. You can:
+
+- Look up order numbers to retrieve and share order details. Keep in mind that the date is the order date and that price is in USD.
+- Access product information to provide relevant descriptions or specifications based on the retrieved product ids.
+- Use the Astra DB knowledge base about Frequently Asked Questions on shipping, returns, placing orders, and more. Always use this tool to find relevant content!
+- Use the Calculator tool to perform basic arithmetic. Only use the calculator tool!
+- Find information on the internet using a specific URL as a last resort only.
+
+Think step by step and if a question requires multiple tools, combine their outputs to deliver a comprehensive response.  
+Example: For an inquiry about canceling an order, retrieve the order and product details, and also reference the FAQ for the cancellation policy.
+
+Always aim to deliver clear, concise, and user-focused solutions to ensure the best possible experience.
+```
+
+🥳 You did it! You now have an Agentic Flow with access to:
+- A company FAQ knowledgebase
+- Orders data
+- Product data
+- A calculator
+- Capability to fetch information from the internet
+
+Let's run some questions. For instance:
+
+- What's the shipping status of order 1001
+- What was ordered with 1003
+- What date will order 1004 arrive?
+- How can I cancel order 1001 and what is the shipping policy?
+- How much euro is order 1001
+
+Observe how all the different tools are being used to answer the user's questions.
