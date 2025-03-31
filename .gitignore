@@ -5,4 +5,4 @@
 .env
 *.log
 *.lock
-/langflow-data
+/.langflow
