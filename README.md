@@ -113,7 +113,7 @@ Click the magnifying glass `🔍` in the `OpenAI` component. This shows you a po
 ![basic-agentic-ai](./assets/basic-agentic-ai.png)
 
 #### Steps:
-1. Reproduce the above flow (or load it from `./flows/basic-agentic-ai.json`)
+1. Reproduce the above flow (or load it from `./flows/v1.2/basic-agentic-ai.json`)
 2. Esure the `OPENAI_API_KEY` has been set
 3. When adding the `URL` and `Calculator` components to the canvas, select them and click `Tool mode`
 
@@ -260,7 +260,8 @@ Example: For an inquiry about canceling an order, retrieve the order and product
 Always aim to deliver clear, concise, and user-focused solutions to ensure the best possible experience.
 ```
 
-![customer-support-agent](./assets/customer-support-agent.png)
+![customer-support-agent](./assets/customer-support-agent.png)  
+For ease of use, this flow is also available here [./flows/v1.2/customer-support-agent.json](./flows/v1.2/customer-support-agent.json)
 
 🥳 You did it! You now have an Agentic Flow with access to:
 - A company FAQ knowledgebase
