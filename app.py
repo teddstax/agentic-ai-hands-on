@@ -1,9 +1,35 @@
 import streamlit as st
-from flow import run_flow, FLOW_ID, TWEAKS
+import requests
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+
+# Flow configuration
+FLOW_ID = "YOUR_FLOW_ID_HERE"
+FLOW_URL = f"http://127.0.0.1:7861/api/v1/run/{FLOW_ID}"
+TWEAKS = {}
+
+def run_flow(message, endpoint=FLOW_ID, output_type="chat", input_type="chat", tweaks=None):
+    """Run the Langflow flow with the given message."""
+    payload = {
+        "input_value": message,
+        "output_type": output_type,
+        "input_type": input_type
+    }
+    
+    headers = {
+        "Content-Type": "application/json"
+    }
+    
+    try:
+        response = requests.request("POST", FLOW_URL, json=payload, headers=headers)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        raise Exception(f"Error making API request: {e}")
+    except ValueError as e:
+        raise Exception(f"Error parsing response: {e}")
 
 # Configure the page
 st.set_page_config(

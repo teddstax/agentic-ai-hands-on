@@ -113,9 +113,11 @@ Click the magnifying glass `🔍` in the `OpenAI` component. This shows you a po
 ![basic-agentic-ai](./assets/basic-agentic-ai.png)
 
 #### Steps:
-1. Reproduce the above flow (or load it from `./flows/v1.2/basic-agentic-ai.json`)
+1. Reproduce the above flow (or load it from [./flows/basic-agentic-ai.json](./flows/basic-agentic-ai.json))
 2. Esure the `OPENAI_API_KEY` has been set
-3. When adding the `URL` and `Calculator` components to the canvas, select them and click `Tool mode`
+3. ⚠️ Ensure the model is set to `gpt-4o-mini` as this model is better suited to reason as an Agent
+4. When adding the `URL` and `Calculator` components to the canvas, select them and click `Tool mode`
+5. Connect all the components
 
 👏 Amazing! You just built your first AI Agent. Let's run it by clicking `▶️ Playground` and asking the question:
 
@@ -152,14 +154,16 @@ Extend your existing Basic Agentic AI flow with the following:
 1. Collapse `Vector Stores` and drag `Astra DB` to the canvas
 2. Click the component and select `Tool mode`
 3. Make sure the `Astra DB Application Token` is configured, then select your `agentic-ai` database and `company_faq` collection
-4. Click `Edit tools` and update both `Tool descriptions` by replacing
+4. Click `Edit tools` and update the three `Tool descriptions` by replacing
     - `Ingest and search documents in Astra DB` with
     - `Answer frequently asked questions (FAQs) about shipping, returns, placing orders, and more.`
     - ![astra-rag-agent](./assets/rag-edit-tools.png)
     - Click `Save`
+    - ⚠️ This essential step ensures the Agent understands to use this specific tool to search for FAQs
 4. Connect the `Astra DB` component to the `Agent` component
 
-![astra-rag-agent](./assets/astra-rag-agent.png)
+![astra-rag-agent](./assets/astra-rag-agent.png)  
+For ease of use, this flow is also available here: [./flows/rag-agentic-ai.json](./flows/rag-agentic-ai.json).
 
 Let's run it by clicking `▶️ Playground` and asking the question:
 
@@ -170,9 +174,9 @@ As a response we get a generic answer. Why? Because our collection is still empt
 #### Steps: Add some articles to our knowledge base
 Extend your flow with the following additional flow (scroll down a bit for a blank piece of canvas):
 1. Collapse `Data` and drag `File` to the canvas
-2. Click on `Upload a file` and upload the `./data/Company_FAQ.pdf` from this repository (you'll have to download it first)
+2. Click on `Upload a file` and upload [./data/Company_FAQ.pdf](./data/Company_FAQ.pdf) from this repository (you'll have to download it first)
 3. Collapse `Langchain` and drag `Recursive Character Splitter` to the canvas
-4. Set the `Chunk size` to 500 and `Chunk overlap` to 100
+4. Set the `Chunk size` to 500 (because NV-Embed-QA only allows 512 tokens at maximum) and `Chunk overlap` to 100 (so that every chunk has a bit of information from the previous one)
 5. Collapse `Vector Stores` and drag `Astra DB` to the canvas
 6. Make sure the `Astra DB Application Token` is configured, then select your `agentic-ai` database and `company_faq` collection
 7. Click the play button `▶️` on the `Astra DB` component, see the flow run and observe the time consumed. You can also click the intermediate magnifying glasses `🔍` to debug the flow.
@@ -226,7 +230,7 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
     - **Tool Description:** `A tool used to look up an order based on its ID`   
     - **Collection Name:** `orders`  
     - Ensure `Astra DB Application Token` and `API endpoint` are configured
-    - **Tool Params:** `orderNumber`
+    - Click `Open Table`, click `+` to add a field and update the field name to `orderNumber`, then click `Save` (this allows the tool to use the orderNumber column for queries)
 4. Connect the `Astra DB Tool` component to the `Agent` component
 
 #### Steps 🛠️🔍: Add Products Lookup to the agent 
@@ -236,7 +240,7 @@ Click on `▶️ Playground` and click on `+` on the left side to start a new Ch
     - **Tool Description:** `A tool used to look up a product based on its ID`   
     - **Collection Name:** `products`  
     - Ensure `Astra DB Application Token` and `API endpoint` are configured
-    - **Tool Params:** `productId`
+    - Click `Open Table`, click `+` to add a field and update the field name to `productId`, then click `Save` (this allows the tool to use the productId column for queries)
 3. Connect the `Astra DB Tool` component to the `Agent` component
 
 #### Steps 💬: Instruct the Agent
@@ -254,14 +258,17 @@ You are a skilled customer service manager and information router. Your primary 
 - Use the Calculator tool to perform basic arithmetic. Only use the calculator tool!
 - Use the URL tool to find known information on the internet or APIs to make the response more accurate.
 
-Think step by step and if a question requires multiple tools, combine their outputs to deliver a comprehensive response.  
+Think step by step. If answering a question requires multiple tools, combine their outputs to deliver a comprehensive response.
+Feel free to iterate a few times!
 Example: For an inquiry about canceling an order, retrieve the order and product details, and also reference the FAQ for the cancellation policy.
+Example: If there are questiona that require arithmetic, make sure to invoke the Calculator tool.
+Example: If there is a need for external up-to-date information, make sure to invoke the URL tool.
 
 Always aim to deliver clear, concise, and user-focused solutions to ensure the best possible experience.
 ```
 
 ![customer-support-agent](./assets/customer-support-agent.png)  
-For ease of use, this flow is also available here [./flows/v1.2/customer-support-agent.json](./flows/v1.2/customer-support-agent.json)
+For ease of use, this flow is also available here: [./flows/customer-support-agent.json](./flows/customer-support-agent.json).
 
 🥳 You did it! You now have an Agentic Flow with access to:
 - A company FAQ knowledgebase
@@ -272,34 +279,45 @@ For ease of use, this flow is also available here [./flows/v1.2/customer-support
 
 Let's run some questions. For instance:
 
-- What's the shipping status of order 1001
-- What was ordered with 1003
+- What's the shipping status of order 1001?
+- What was ordered with 1003?
 - What date will order 1004 arrive?
 - How can I cancel order 1001 and what is the shipping policy?
-- How much euro is order 1001
+- What's the amount of order 1005 in Euros?
+- The customer paid 110 euros for order 1001, how much should we return?
 
 Observe how all the different tools are being used to answer the user's questions.
 
-### 5. 📱 Add an app as a wrapper around Langflow
+### 5. 📱 Create an external app that call the Langflow REST Endpoint
 In this step we'll create a simple Python app that runs the Langflow flow.
 
 #### Steps: Use the Langflow API endpoint in Python
-1. In Langflow exit the Playground and click on `API` in the right top corner
-2. Click on Python API
+1. In Langflow exit the Playground and click on `Publish` in the right top corner and then click `API Access`
+2. Click on `Python`
 3. Copy the code and paste it in a new file called `flow.py`
+4. Change the input value on line 6 to something like *How can I cancel order 1001 and what is the shipping policy?*
+5. Save the file
 
 ![langflow-python-api](./assets/langflow-python-api.png)
 
 Let's run it!
 
 ```bash
-uv run flow.py "What is in order 1001"
+uv run flow.py
 ```
+
+As a response you'll see a JSON structure that contains the actual answer and additonal metadata.  
+The answer you're probably looking for is located inside the JSONPath `$.outputs[0].outputs[0].results.message.text`.
+
+If you change line 22 to the following, you'll see the actual response: `print(response.json()['outputs'][0]['outputs'][0]['results']['message']['text'])`
 
 ### 6. 🤩 Add a visual front-end
 In this step we'll use a simple Streamlit app that supports Customer Support Agents.
 
-** 🚨 Important:** This app is reliant on `flow.py`, so make sure the previous step works!
+#### Steps: Configure the Langflow FLOW_ID
+1. Open `app.py`
+2. Update line 9 to the `FLOW_ID` of your flow, you can find the Flow ID in Langflow by clicking on `Publish->API Access` and taking the ID after `.../run/`
+3. Save the file
 
 In order to run the app:
 ```bash
