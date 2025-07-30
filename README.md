@@ -31,8 +31,6 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 ### OpenAI Keys
 -  We will provide some OpenAI API keys to use for this workshop*
 
-    ![openai](./assets/openai-key.png)
-
 
 🎉 Congrats! You finished the set-up part of the workshop. Now for the fun part!
 
