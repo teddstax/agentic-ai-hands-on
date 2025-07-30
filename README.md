@@ -31,43 +31,11 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 
     ![astradb](./assets/astra-new-db.png)
 
-### Sign up for OpenAI
-- Create an [OpenAI account](https://platform.openai.com/signup) or [sign in](https://platform.openai.com/login).
-- Navigate to the [API key page](https://platform.openai.com/account/api-keys) and create a new **Secret Key**, optionally naming the key.
-    - *Alternatively we'll provide some OpenAI API keys to use for this workshop*
+### OpenAI Keys
+-  We will provide some OpenAI API keys to use for this workshop*
 
     ![openai](./assets/openai-key.png)
 
-### ⚡️ Open this tutorial on Github Codespaces
-To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
-
-1. Open the [agentic-ai-workshop](https://github.com/michelderu/agentic-ai-workshop) repository
-2. Click on `Use this template`->`Ceate new repository` as follows:
-
-    ![codespace](./assets/create-new-repository.png)
-
-3. Now select your github account and name the new repository. Ideally also set the description. Click `Create repository`
-
-    ![codespace](./assets/repository-name.png)
-
-4. Cool! You just created a copy in your own Gihub account! Now let's get started with coding. Click `Create codespace on main` as follows:
-
-    ![codespace](./assets/create-codespace.png)
-
-5. Configure the secrets as follows:
-
-- Copy `.env.example` to `.env`
-- Edit `.env` and provide the required variables `OPENAI_API_KEY`, `ASTRA_DB_API_ENDPOINT` and `ASTRA_DB_APPLICATION_TOKEN`
-
-6. Now we can run Langflow as follows in the terminal window:
-
-    ```bash
-    pip install uv
-    uv sync
-    uv run langflow run --env-file .env
-    ```
-
-    This starts Langflow and opens a port to your Codespace in the cloud. In case you loose track of the URL to Langflow, just click on `PORTS` in the terminal window.
 
 🎉 Congrats! You finished the set-up part of the workshop. Now for the fun part!
 
