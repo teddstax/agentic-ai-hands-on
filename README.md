@@ -10,15 +10,12 @@ By the end of this workshop, you’ll have a fully functional AI agent that can:
 - Adapt dynamically to user intent—just like a real support agent would
 
 ## 🛠️ Prerequisites
-This workshop assumes you have access to:
-1. [A Github account](https://github.com)
 
 During the course, you'll gain access to the following by signing up for free:
-1. [DataStax Astra DB](https://astra.datastax.com) (you can sign up through your **public** Github account)
-2. [OpenAI account](https://platform.openai.com/signup) (you can sign up through your Github account)
-    - *Alternatively we'll provide some OpenAI API keys to use for this workshop*
+1. [DataStax Astra DB](https://astra.datastax.com) (you can sign up through your **public** Github account - the email has to be public as well)
+2. [OpenAI account](https://platform.openai.com/signup) (you can sign up if you want to use your own keys)
 
-Follow the below steps and note down the **Astra DB API Endpoint**, **Astra DB ApplicationToken** and **OpenAI API Key** as we'll need them later on.
+
 
 ### Sign up for Astra DB
 Make sure you have a vector-capable Astra database (get one for free at [astra.datastax.com](https://astra.datastax.com))
@@ -45,11 +42,12 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 **Goal:** Create a chatbot with: input → model → output
 
 #### Steps:
-1. Open Langflow
-2. Click `+ New Flow` / `+ Blank Flow`
-3. Collapse `Inputs` and drag the `Chat Input` component to the canvas
-4. Collapse `Models` and drag the `OpenAI` component to the canvas. Connect `Input` to the `Chat Input`
-5. Collapse `Outputs` and drag the `Chat Output` component to the canvas. Connect `Message` to the `Chat Output` component
+1. Navigate to astra.datastax.com
+1. Switch to Langflow (top right button)
+3. Click `+ New Flow` / `+ Blank Flow`
+4. Collapse `Inputs` and drag the `Chat Input` component to the canvas
+5. Collapse `Models` and drag the `OpenAI` component to the canvas. Connect `Input` to the `Chat Input`
+6. Collapse `Outputs` and drag the `Chat Output` component to the canvas. Connect `Message` to the `Chat Output` component
 
 ![chatbot-flow](./assets/chatbot-flow.png)
 
@@ -256,40 +254,3 @@ Let's run some questions. For instance:
 
 Observe how all the different tools are being used to answer the user's questions.
 
-### 5. 📱 Create an external app that call the Langflow REST Endpoint
-In this step we'll create a simple Python app that runs the Langflow flow.
-
-#### Steps: Use the Langflow API endpoint in Python
-1. In Langflow exit the Playground and click on `Publish` in the right top corner and then click `API Access`
-2. Click on `Python`
-3. Copy the code and paste it in a new file called `flow.py`
-4. Change the input value on line 6 to something like *How can I cancel order 1001 and what is the shipping policy?*
-5. Save the file
-
-![langflow-python-api](./assets/langflow-python-api.png)
-
-Let's run it!
-
-```bash
-uv run flow.py
-```
-
-As a response you'll see a JSON structure that contains the actual answer and additonal metadata.  
-The answer you're probably looking for is located inside the JSONPath `$.outputs[0].outputs[0].results.message.text`.
-
-If you change line 22 to the following, you'll see the actual response: `print(response.json()['outputs'][0]['outputs'][0]['results']['message']['text'])`
-
-### 6. 🤩 Add a visual front-end
-In this step we'll use a simple Streamlit app that supports Customer Support Agents.
-
-#### Steps: Configure the Langflow FLOW_ID
-1. Open `app.py`
-2. Update line 9 to the `FLOW_ID` of your flow, you can find the Flow ID in Langflow by clicking on `Publish->API Access` and taking the ID after `.../run/`
-3. Save the file
-
-In order to run the app:
-```bash
-uv run streamlit run app.py
-```
-
-![streamlit-front-end](./assets/streamlit-front-end.png)
